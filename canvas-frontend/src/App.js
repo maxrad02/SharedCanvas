@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Canvas from "./Canvas";
+import "./App.css";
+import { useRef } from "react";
+import { MODES } from "./constants";
+import { useWindowSize } from "./hooks";
 
 function App() {
+  const settings = useRef({
+    stroke: 3,
+    color: "#000",
+    mode: MODES.PEN,
+  });
+
+  const size = useWindowSize();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="canvas-container">
+        <Canvas {...size} settings={settings} />
+      </div>
     </div>
   );
 }
